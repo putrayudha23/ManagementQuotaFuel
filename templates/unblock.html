@@ -1,0 +1,432 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Data Blocking</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link active">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <div class="header-container">
+    <h3 class="header-title">Data Blocking</h3>
+  </div>
+{% endblock %}
+
+{% block body %}
+<!-- Search -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Search Data</h3>
+  </div>
+  <div class="card-body">
+    <form class="form-inline" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="number_plat_search" class="mr-2">Nomor Kendaraan: </label>
+        <input type="text" class="form-control mr-2" name="number_plat_search" id="number_plat_search">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
+
+<!-- Tabel -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+</style>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .required-field {
+    color: red;
+    vertical-align: super;
+  }
+  
+</style>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Table Master ID Kendaraan (Data Diblock)</h3>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-striped" id="vehicleTable">
+      <thead>
+        <tr>
+          <th class="text-center" style="display:none;">id</th>
+          <th class="text-center">Nomor Kendaraan</th>
+          <th class="text-center">Nama Pemilik</th>
+          <th class="text-center">Alamat Pemilik</th>
+          <th class="text-center">Merk Kendaraan</th>
+          <th class="text-center">Tipe Kendaraan STNK</th>
+          <th class="text-center">Jenis/Model Kendaraan STNK</th>
+          <th class="text-center">Warna TNKB</th>
+          <th class="text-center">Jumlah Roda</th>
+          <th class="text-center">Tipe Kendaraan System</th>
+          <th class="text-center">Tahun Pembuatan</th>
+          <th class="text-center">Isi Silinder</th>
+          <th class="text-center">STNK Status</th>
+          <th class="text-center">Batas Masa Berlaku STNK</th>
+          <th class="text-center">Rekom Status</th>
+
+          <th class="text-center">STNK Depan</th>
+          <th class="text-center">STNK Belakang</th>
+          <th class="text-center">Surat Rekomendasi</th>
+
+          <th class="text-center">Vehicle Type ID</th>
+          <th class="text-center">Setting System</th>
+          <th class="text-center">Inactive Status</th>
+
+          <th class="text-center">User Create</th>
+          <th class="text-center">Date Create</th>
+          <th class="text-center">User Update</th>
+          <th class="text-center">Date Update</th>
+
+          <th class="text-center">Blocking</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in page_obj %}
+        <tr>
+            <td class="text-center" style="display:none;">{{ row.RowID }}</td>
+            <td class="text-center">{{ row.number_plat }}</td>
+            <td class="text-center">{{ row.NamaPemilik }}</td>
+            <td class="text-center">{{ row.AlamatPemilik }}</td>
+            <td class="text-center">{{ row.MerkKendaraan }}</td>
+            <td class="text-center">{{ row.TypeKendaraan }}</td>
+            <td class="text-center">{{ row.JenisKendaraan }}</td>
+            <td class="text-center">{{ row.Warna }}</td>
+            <td class="text-center">{{ row.JumlahRoda }}</td>
+            <td class="text-center">{{ row.description }}</td>
+            <td class="text-center">{{ row.TahunPembuatan }}</td>
+            <td class="text-center">{{ row.KapasitasCylinder }}</td>
+            <td class="text-center">{{ row.STNKReady }}</td>
+            <td class="text-center">{{ row.DateValidSTNK }}</td>
+            <td class="text-center">{{ row.RekomReady }}</td>
+
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/stnk_images/{{ row.number_plat }}_STNK_DEPAN">File Link</a></td>
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/stnk_images/{{ row.number_plat }}_STNK_BELAKANG">File Link</a></td>
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/rekom_images/{{ row.number_plat }}_SURAT_REKOMENDASI">File Link</a></td>
+
+            <td class="text-center">{{ row.vehicletype_id }}</td>
+            <td class="text-center">{{ row.SettingSystem }}</td>
+            <td class="text-center">{{ row.Deleted }}</td>
+            <td class="text-center">{{ row.UploadedBy }}</td>
+            <td class="text-center">{{ row.UploadedDate }}</td>
+            <td class="text-center">{{ row.ChangedBy }}</td>
+            <td class="text-center">{{ row.ChangedDate }}</td>
+
+            <td class="text-center" style="display:none;">{{ row.block }}</td>
+            <td class="text-center"><a class="btn btn-success" href="{% url 'unblock:unblock' row.RowID %}" id="blockBtn" type="Submit" onclick="return confirm('Anda yakin ingin membuka blocking data?')">Unblock Data</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+  </div>
+</div>
+{% endblock %}
+

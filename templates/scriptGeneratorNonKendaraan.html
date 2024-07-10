@@ -1,0 +1,515 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Script Generator</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link active">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <div class="header-container">
+    <h3 class="header-title">Script Generartor Non Transportation</h3>
+  </div>
+{% endblock %}
+
+{% block body %}
+<!-- panel input -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Script Parameter Generator</h3>
+  </div>
+  <div class="card-body">
+    <form method="post" id="scriptForm">
+      {% csrf_token %}
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="jenisSkript" class="form-label">Jenis Skript:</label>
+            <select class="form-control" id="jenisSkript" name="jenisSkript" required>
+              <option value="Update ID Nelayan" {% if jenis_skript == "Update ID Nelayan" %}selected{% endif %}>Update ID Nelayan</option>
+              <option value="Penambahan ID Nelayan" {% if jenis_skript == "Penambahan ID Nelayan" %}selected{% endif %}>Penambahan ID Nelayan</option>
+              <option value="Perpanjangan" {% if jenis_skript == "Perpanjangan" %}selected{% endif %}>Perpanjangan</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="startDate" class="form-label">Start Date:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" value="{{ start_date }}" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="endDate" class="form-label">End Date:</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" value="{{ end_date }}" required>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="noPenyalur" class="form-label">No Penyalur:</label>
+            <input type="text" class="form-control" id="noPenyalur" name="noPenyalur" list="site-options" value="{{ no_penyalur }}" required>
+            <datalist id="site-options">
+              {% for site in sites %}
+              <option value="{{ site.typeSpb }} {{ site.site_registration }}">{{ site.site_name }}</option>
+              {% endfor %}
+            </datalist>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="versiSkript" class="form-label">Versi Skript:</label>
+            <select class="form-control" id="versiSkript" name="versiSkript" required>
+              <option value="Skript V2" {% if versi_skript == "Skript V2" %}selected{% endif %}>Skript V2</option>
+              <option value="Skript V3" {% if versi_skript == "Skript V3" %}selected{% endif %}>Skript V3</option>
+            </select>            
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <button type="submit" id="viewDataButton" class="btn btn-primary">View Data</button>
+          <button type="button" id="generateScriptButton" class="btn btn-success">Generate Script</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- style -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+</style>
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<div class="card mx-auto">
+  <div class="card-header">
+      <h3 class="card-title">Table View Data</h3>
+  </div>
+  <div class="card-body table-responsive">
+      <table class="table table-striped mx-auto" id="viewDataTable">
+          <thead>
+              <tr>
+                  <th class="text-center">No Penyalur</th>
+                  <th class="text-center">ID Konsumen</th>
+                  <th class="text-center">Klasifikasi/Kapasitas GT</th>
+                  <th class="text-center">Alokasi Kuota</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in page_obj %}
+              <tr>
+                <td class="text-center">{{ row.site_registration }}</td>
+                <td class="text-center">{{ row.no_konsumen }}</td>
+                <td class="text-center">{{ row.klasifikasi_gt }}</td>
+                <td class="text-center">{{ row.alokasi_volume }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('jenisSkript').addEventListener('change', function() {
+    var viewDataButton = document.getElementById('viewDataButton');
+    var versiSkript = document.getElementById('versiSkript');
+    var noPenyalur = document.getElementById('noPenyalur');
+    if (this.value === 'Perpanjangan') {
+      viewDataButton.disabled = true;
+      versiSkript.disabled = true;
+      noPenyalur.disabled = true;
+    } else {
+      viewDataButton.disabled = false;
+      versiSkript.disabled = false;
+      noPenyalur.disabled = false;
+    }
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script> <!-- Add pako.js for gzip compression -->
+<script>
+$(document).ready(function() {
+    $("#generateScriptButton").click(function() {
+        var jenisSkript = $("#jenisSkript").val();
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        var noPenyalur = $("#noPenyalur").val();
+        var versiSkript = $("#versiSkript").val();
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'generateScriptNonKendaraan:generate_script' %}",
+            data: {
+                jenisSkript: jenisSkript,
+                startDate: startDate,
+                endDate: endDate,
+                noPenyalur: noPenyalur,
+                versiSkript: versiSkript,
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: function(response) {
+                // Access the filename and content from the response data
+                var filename = response.filename;
+                var Adhoc = response.Adhoc;
+
+                // Encrypt the gz file to a cpt file
+                encryptGzToCpt(filename,Adhoc);
+            },
+            error: function(xhr, errmsg, err) {
+                // Handle errors.
+                console.log(err);
+            }
+        });
+    });
+});
+
+function encryptGzToCpt(gzFilename, adhoc) {
+    // Make an AJAX request to your server-side script
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'generateScriptNonKendaraan:encrypt_script_endpoint' %}",
+        data: { gzFilename: gzFilename, adhoc: adhoc },
+        xhrFields: {
+            responseType: 'blob' // Set the response type to blob
+        },
+        success: function(response) {
+            if (response.size > 0) {
+                // Handle success (e.g., display a success message)
+                console.log("Encryption successful!");
+
+                // Create a Blob object for the ZIP archive
+                var blob = new Blob([response], { type: 'application/zip' });
+
+                // Create a download link for the ZIP archive
+                var zipFilename = gzFilename + "_with_adhoc.zip";
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = zipFilename;
+                link.click();
+            } else {
+                // Handle encryption failure
+                console.log("Encryption failed.");
+            }
+        },
+        error: function(xhr, errmsg, err) {
+            // Handle errors (e.g., show an error message)
+            console.log("Error: " + err);
+        }
+    });
+}
+
+
+</script>
+
+
+{% endblock %}
+

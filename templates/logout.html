@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logout</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card border-danger">
+      <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Logout</h4>
+      </div>
+      <div class="card-body">
+        <p class="lead">You have been logged out.</p>
+        <p>Please close this window or click the button below to return to the system manager.</p>
+        <a href="http://systemmanager.akr.co.id/" class="btn btn-outline-danger"><i class="fas fa-home"></i> Return to System Manager</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    // Close the current tab/window after 3 seconds
+    setTimeout(function() {
+      window.close();
+    }, 5000);
+  </script>
+</body>
+</html>

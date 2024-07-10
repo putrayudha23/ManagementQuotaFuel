@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Home</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <div class="header-container">
+    <h3 class="header-title"> </h3>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <div style="text-align: center;">
+    <h3 style="font-size: 24px; margin: 0;">Selamat Datang</h3>
+    <h3 style="font-size: 32px; margin: 0;"><strong>{{ user.get_full_name }}</strong></h3>
+  </div>
+{% endblock %}

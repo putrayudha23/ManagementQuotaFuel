@@ -1,0 +1,534 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Quota Transaction</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link active">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <h1 class="m-0">QUOTA TRANSACTION</h1>
+{% endblock %}
+
+{% block body %}
+<!-- Search -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Search Data</h3>
+  </div>
+  <div class="card-body">
+    <form class="form-inline" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="plat-number-input" class="mr-2">Nomor Kendaraan:</label>
+        <input type="text" class="form-control mr-2" name="plat-number-input" id="plat-number-input">
+      </div>
+      <div class="form-group">
+        <label for="side-regis-input" class="mr-2">Site Registration:</label>
+        <input type="text" class="form-control mr-2" id="side-regis-input" name="side-regis-input" list="site-options">
+        <datalist id="site-options">
+          {% for site in sites %}
+            <option value="{{ site.site_registration }}">{{ site.site_name }}</option>
+          {% endfor %}
+        </datalist>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>        
+  </div>
+</div>
+
+<!-- Tabel -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+</style>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<div class="card mx-auto">
+  <div class="card-header">
+      <h3 class="card-title">Table Quota Transaction</h3>
+  </div>
+  <div class="card-body table-responsive">
+      <table class="table table-striped mx-auto" id="quotaTransactionTable">
+          <thead>
+              <tr>
+                  <th class="text-center">id</th>
+                  <th class="text-center">number_plat</th>
+                  <th class="text-center">vehicletype_id</th>
+                  <th class="text-center">volume_quotaallocated</th>
+                  <th class="text-center">volume_quotaavailable</th>
+                  <th class="text-center">price</th>
+                  <th class="text-center">frequency_quota</th>
+                  <th class="text-center">site_registration</th>
+                  <th class="text-center">trn_id</th>
+                  <th class="text-center">trnrec</th>
+                  <th class="text-center">quota_time</th>
+                  <th class="text-center">transaction_time</th>
+                  <th class="text-center">volume_quotaallocated_before</th>
+                  <th class="text-center">volume_quotaavailable_before</th>
+                  <th class="text-center">site_registration_before</th>
+                  <th class="text-center">Edit</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for row in page_obj %}
+              <tr>
+                  <td class="text-center">{{ row.id }}</td>
+                  <td class="text-center">{{ row.number_plat }}</td>
+                  <td class="text-center">{{ row.vehicletype_id }}</td>
+                  <td class="text-center">{{ row.volume_quotaallocated }}</td>
+                  <td class="text-center">{{ row.volume_quotaavailable }}</td>
+                  <td class="text-center">{{ row.price }}</td>
+                  <td class="text-center">{{ row.frequency_quota}}</td>
+                  <td class="text-center">{{ row.site_registration }}</td>
+                  <td class="text-center">{{ row.trn_id }}</td>
+                  <td class="text-center">{{ row.trnrec }}</td>
+                  <td class="text-center">{{ row.quota_time }}</td>
+                  <td class="text-center">{{ row.transaction_time }}</td>
+                  <td class="text-center">{{ row.volume_quotaallocated_before }}</td>
+                  <td class="text-center">{{ row.volume_quotaavailable_before }}</td>
+                  <td class="text-center">{{ row.site_registration_before }}</td>
+                  <td class="text-center"><a class="btn btn-success" id="editBtn">Edit</a></td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+  </div>
+</div>
+
+
+<!-- Form -->
+<div class="card">
+  <div class="card-header">
+      <h3 class="card-title">Add or Modify</h3>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="card-body">
+        <table class="table">
+            <tr>
+              <input type="hidden" name="quota_transaction_id" id="quota_transaction_id">
+              <input type="hidden" name="number_plat" id="number_plat">
+              <input type="hidden" name="volume_quotaavailable_before" id="volume_quotaavailable_before">
+              <input type="hidden" name="frequency_quota_before" id="frequency_quota_before">
+              <input type="hidden" name="trnrec_before" id="trnrec_before">
+                <td>
+                    <div class="form-group">
+                        <label for="volume_quotaavailable">Quota Available</label>
+                        <input type="number" class="form-control" id="volume_quotaavailable" name="volume_quotaavailable" min="0" max="9999999999" step="1" oninput="this.value = Math.abs(parseInt(this.value)) || this.value === '0' ? Math.abs(parseInt(this.value)) : '';" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="frequency_quota">Frecuency Quota</label>
+                        <input type="number" class="form-control" id="frequency_quota" name="frequency_quota" min="0" max="9999999999" step="1" oninput="this.value = Math.abs(parseInt(this.value)) || this.value === '0' ? Math.abs(parseInt(this.value)) : '';" disabled>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="trnrec">trnrec</label>
+                        <select class="form-control" id="trnrec" name="trnrec" disabled>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button type="Submit" class="btn btn-success" id="modifyBtn" disabled>Modify</button>
+        <button type="button" class="btn btn-danger" id="cancelmodifyBtn" disabled>Cancel Modify</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const editButtons = document.querySelectorAll("#editBtn");
+  const cancelModifyBtn = document.getElementById("cancelmodifyBtn");
+  const quotaTransaction = document.getElementById("quota_transaction_id");
+  const numberPlat = document.getElementById("number_plat");
+  const quotaAvailableInput = document.getElementById("volume_quotaavailable");
+  const frequencyQuotaInput = document.getElementById("frequency_quota");
+  const trnrecInput = document.getElementById("trnrec");
+  const modify_btn = document.getElementById("modifyBtn");
+
+  const volume_quotaavailable_before = document.getElementById("volume_quotaavailable_before");
+  const frequency_quota_before = document.getElementById("frequency_quota_before");
+  const trnrec_before = document.getElementById("trnrec_before");
+
+  editButtons.forEach(function(editButton) {
+    editButton.addEventListener("click", function() {
+      // Get the parent row of the clicked edit button
+      const selectedRow = this.closest("tr");
+
+      // Remove the "selected" class from all rows
+      document.querySelectorAll("tr").forEach(function(row) {
+        row.classList.remove("selected");
+      });
+
+      // Add the "selected" class to the parent row of the clicked edit button
+      selectedRow.classList.add("selected");
+
+      // Get the data from the selected table cells
+      const quotaTransactionCell = selectedRow.querySelector("td:nth-child(1)");
+      const numberPlatCell = selectedRow.querySelector("td:nth-child(2)");
+      const volumeQuotaAvailableCell = selectedRow.querySelector("td:nth-child(5)");
+      const frequencyQuotaCell = selectedRow.querySelector("td:nth-child(7)");
+      const trnrecCell = selectedRow.querySelector("td:nth-child(10)");
+
+      // Populate the input fields with the data from the selected table cells
+      quotaTransaction.value = quotaTransactionCell.innerText;
+      numberPlat.value = numberPlatCell.innerText;
+      quotaAvailableInput.value = volumeQuotaAvailableCell.innerText;
+      frequencyQuotaInput.value = frequencyQuotaCell.innerText;
+      trnrecInput.value = trnrecCell.innerText;
+
+      volume_quotaavailable_before.value = volumeQuotaAvailableCell.innerText;
+      frequency_quota_before.value = frequencyQuotaCell.innerText;
+      trnrec_before.value = trnrecCell.innerText;
+
+
+      // Enable the input fields and the cancel modify button
+      quotaAvailableInput.removeAttribute("disabled");
+      frequencyQuotaInput.removeAttribute("disabled");
+      trnrecInput.removeAttribute("disabled");
+      modify_btn.disabled = false;
+      cancelModifyBtn.disabled = false;
+
+      // Scroll to the bottom of the page
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  });
+
+  cancelModifyBtn.addEventListener("click", function() {
+    // Clear the input fields
+    quotaTransaction.value = "";
+    numberPlat.value = "";
+    quotaAvailableInput.value = "";
+    frequencyQuotaInput.value = "";
+
+    volume_quotaavailable_before.value = "";
+    frequency_quota_before.value = "";
+    trnrec_before.value = "";
+
+    // Disable the input fields and the cancel modify button
+    quotaAvailableInput.disabled = true;
+    frequencyQuotaInput.disabled = true;
+    trnrecInput.disabled = true;
+    modify_btn.disabled = true;
+    cancelModifyBtn.disabled = true;
+
+    // Remove the "selected" class from all rows
+    document.querySelectorAll("tr").forEach(function(row) {
+      row.classList.remove("selected");
+    });
+  });
+</script>
+
+
+{% endblock %}

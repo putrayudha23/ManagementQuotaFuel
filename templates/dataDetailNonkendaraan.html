@@ -1,0 +1,755 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Home</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link active">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <div class="header-container">
+    <h3 class="header-title">Data Detail Non Kendaraan</h3>
+  </div>
+{% endblock %}
+
+{% block body %}
+<!-- Search -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Search Data</h3>
+  </div>
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-row align-items-end">
+        <div class="form-group col-md-2">
+          <label for="searchLogic">Filter Logic:</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="searchLogic" value="AND" id="searchLogicAND" checked>
+            <label class="form-check-label" for="searchLogicAND">AND</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="searchLogic" value="OR" id="searchLogicOR">
+            <label class="form-check-label" for="searchLogicOR">OR</label>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchProvinsi" class="mr-2">Provinsi:</label>
+          <select class="form-control" id="searchProvinsi" name="searchProvinsi">
+              <option value="All">All</option>
+              {% for provinsi in unique_provinces %}
+              <option value="{{ provinsi.provinsi }}">{{ provinsi.provinsi }}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="searchNoPenyalur" class="mr-2">No Penyalur:</label>
+            <select class="form-control" id="searchNoPenyalur" name="searchNoPenyalur">
+                <option value="All">All</option>
+                {% for site in sites %}
+                <option value="{{ site.typeSpb }} {{ site.site_registration }}" data-provinsi="{{ site.provinsi }}">{{ site.typeSpb }} {{ site.site_registration }} ({{ site.site_name }} )</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchSektor">Sektor Konsumen Pengguna:</label>
+          <select class="form-control" id="searchSektor" name="searchSektor">
+            <option value="">-- Select --</option>
+            {% for sektor in sektor_konsumenlist %}
+              <option value="{{ sektor.id }}">{{ sektor.sektor_konsumen }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchStatus">Status:</label>
+          <select class="form-control" id="searchStatus" name="searchStatus">
+            <option value="">-- Select --</option>
+            <option value="Perlu Validasi">Perlu Validasi</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchMonthYear">Month and Year:</label>
+          <input type="month" class="form-control" id="searchMonthYear" name="searchMonthYear">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Filter Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- style -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+
+  .table-responsive {
+    overflow-y: auto;
+    max-height: 700px;
+    /* max-height: 50%; */
+  }
+
+  /* Style for the table header */
+  #nonVehicleTable thead {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5; /* You can set the desired background color */
+  }
+
+  /* Optional: Add some padding to the top of the table to prevent the header from overlapping content */
+  .card-body.table-responsive {
+    padding-top: 0px; /* Adjust this value as needed */
+  }
+
+  .dropdown-menu {
+    max-height: 200px; /* Define your desired maximum height */
+    overflow-y: auto;
+  }
+</style>
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .required-field {
+    color: red;
+    vertical-align: super;
+  }
+
+  .modal-body {
+    max-height: 700px; /* Set a maximum height for the modal body */
+    overflow-y: auto; /* Add vertical scrollbars when content overflows */
+  }
+
+  .modal-dialog {
+    max-width: 700px; /* Adjust the width as needed */
+    width: 80%; /* You can also use a percentage of the viewport width */
+  }
+</style>
+
+<!-- table -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-tools">
+      <button href="#" class="btn btn-success" id="exportExcelBtn">Export Table to Excel</button>
+      <a href="{% url 'dataDetailNonkendaraan:export_excel' %}" class="btn btn-success">Download All Data to Excel</a>
+    </div>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table filterable-table" id="nonVehicleTable">
+      <thead>
+        <tr>
+          <th class="text-center" style="display:none;">id</th>
+          <th class="text-center">No Penyalur </th>
+          <th class="text-center">ID Konsumen </th>
+          <th class="text-center">Nama </th>
+          <th class="text-center">NIK </th>
+          <th class="text-center">Alamat </th>
+          <th class="text-center">Sektor Konsumen Pengguna </th>
+          <th class="text-center">Nama Kapal </th>
+          <th class="text-center">Jenis Mesin </th>
+          <th class="text-center">Jumlah Mesin </th>
+          <th class="text-center">Jumlah Daya Mesin (PK) </th>
+          <th class="text-center">Jam Penggunaan Mesin per hari </th>
+          <th class="text-center">Klasifikasi/Kapasitas GT </th>
+          <th class="text-center">Lama Operasi (hari per bulan) </th>
+          <th class="text-center">Konsumsi JBT (Bulan) </th>
+          <th class="text-center">Alokasi Volume </th>
+          <th class="text-center">Tanggal Awal Surat Rekomendasi </th>
+          <th class="text-center">Tanggal Akhir Surat Rekomendasi </th>
+          <th class="text-center">Nomor Surat Rekomendasi </th>
+
+          <th class="text-center">Badan Usaha </th>
+          <th class="text-center">Nama Usaha </th>
+          <th class="text-center">Jenis BBM </th>
+          <th class="text-center">Jenis Usaha </th>
+          <th class="text-center">Kode Provinsi </th>
+          <th class="text-center">Kode Kabupaten Kota </th>
+          <th class="text-center">Kode Kecamatan </th>
+          <th class="text-center">Kode Kelurahan Desa </th>
+          <th class="text-center">Penerbit </th>
+
+          <th class="text-center">Dokumen Status </th>
+          <th class="text-center">Approve Status </th>
+          <th class="text-center">Reject Status </th>
+          <th class="text-center">Inactive Status </th>
+          <th class="text-center">Uploaded By </th>
+          <th class="text-center">Uploaded Date </th>
+          <th class="text-center">Changed By </th>
+          <th class="text-center">Changed Date </th>
+          <th class="text-center">URL File </th>
+          <th class="text-center">Surat Rekomendasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in page_obj %}
+        <tr data-row-id="{{ row.id }}">
+            <td class="text-center" data-field="id" style="display:none;">{{ row.id }}</td>
+            <td class="text-center" data-field="site_registration">{{ row.site_registration }}</td>
+            <td class="text-center" data-field="no_konsumen">{{ row.no_konsumen }}</td>
+            <td class="text-center" data-field="nama">{{ row.nama }}</td>
+            <td class="text-center" data-field="nik">{{ row.nik }}</td>
+            <td class="text-center" data-field="alamat">{{ row.alamat }}</td>
+            <td class="text-center" data-field="sektor_konsumen">{{ row.sektor_konsumen }}</td>
+            <td class="text-center" data-field="nama_kapal">{{ row.nama_kapal }}</td>
+            <td class="text-center" data-field="jenis_mesin">{{ row.jenis_mesin }}</td>
+            <td class="text-center" data-field="jumlah_mesin">{{ row.jumlah_mesin }}</td>
+            <td class="text-center" data-field="jumlah_dayaMesin">{{ row.jumlah_dayaMesin }}</td>
+            <td class="text-center" data-field="jam_penggunaan">{{ row.jam_penggunaan }}</td>
+            <td class="text-center" data-field="klasifikasi_gt">{{ row.klasifikasi_gt }}</td>
+            <td class="text-center" data-field="lama_operasi">{{ row.lama_operasi }}</td>
+            <td class="text-center" data-field="konsumsi_jbt">{{ row.konsumsi_jbt }}</td>
+            <td class="text-center" data-field="alokasi_volume">{{ row.alokasi_volume }}</td>
+            <td class="text-center" data-field="tgl_awal_rekom">{{ row.tgl_awal_rekom }}</td>
+            <td class="text-center" data-field="tgl_akhir_rekom">{{ row.tgl_akhir_rekom }}</td>
+            <td class="text-center" data-field="nomor_surat">{{ row.nomor_surat }}</td>
+
+            <td class="text-center" data-field="badan_usaha">{{ row.badan_usaha }}</td>
+            <td class="text-center" data-field="nama_usaha">{{ row.nama_usaha }}</td>
+            <td class="text-center" data-field="jenis_bbm_desc">{{ row.jenis_bbm_desc }}</td>
+            <td class="text-center" data-field="jenis_usaha_desc">{{ row.jenis_usaha_desc }}</td>
+            <td class="text-center" data-field="kode_provinsi">{{ row.kode_provinsi }}</td>
+            <td class="text-center" data-field="kode_kabkota">{{ row.kode_kabkota }}</td>
+            <td class="text-center" data-field="kode_kecamatan">{{ row.kode_kecamatan }}</td>
+            <td class="text-center" data-field="kode_keldesa">{{ row.kode_keldesa }}</td>
+            <td class="text-center" data-field="penerbit">{{ row.penerbit }}</td>
+
+            <td class="text-center">{{ row.dokumen_status }}</td>
+            <td class="text-center">{{ row.approved_status }}</td>
+            <td class="text-center">{{ row.disapproved_status }}</td>
+            <td class="text-center">{{ row.inactive_status }}</td>
+            <td class="text-center">{{ row.UploadedBy }}</td>
+            <td class="text-center">{{ row.UploadedDate }}</td>
+            <td class="text-center">{{ row.ChangedBy }}</td>
+            <td class="text-center">{{ row.ChangedDate }}</td>
+
+            <td class="text-center"><a href="{{ row.url_file }}" target="_blank">File Link</a></td>
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/RekomDokumen_Nontransportasi/{{ row.dokumen_name }}">File Link</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+<!-- FileSaver -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+
+    $('#searchNoPenyalur').change(function() {
+        var selectedNoPenyalur = $(this).val();
+        
+        if (selectedNoPenyalur !== 'All') {
+            var correspondingProvinsi = $('#searchNoPenyalur option[value="' + selectedNoPenyalur + '"]').data('provinsi');
+            $('#searchProvinsi').val(correspondingProvinsi).change();
+        }
+    });
+
+    $('#searchProvinsi').change(function() {
+        var selectedProvinsi = $(this).val();
+        var options = $('#searchNoPenyalur option');
+
+        if (selectedProvinsi === 'All') {
+            options.show();
+        } else {
+            options.hide();
+            options.filter('[value="All"]').show();
+            options.filter('[data-provinsi="' + selectedProvinsi + '"]').show();
+        }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const table = document.getElementById("nonVehicleTable");
+    const headers = table.getElementsByTagName("th");
+
+    // Create dropdown buttons and populate them with unique values
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
+      const headerText = header.textContent.trim(); // Get the text content of the header
+
+      // Check if the header is one of the excluded headers
+      if (headerText !== "" && headerText !== "Edit" && headerText !== "Inctivate Change" && headerText !== "Surat Rekomendasi") {
+        const values = new Set();
+
+        // Collect unique values from the column
+        const columnCells = table.querySelectorAll(`tr td:nth-child(${i + 1})`);
+        columnCells.forEach(cell => {
+          values.add(cell.textContent.trim());
+        });
+
+        // Create a dropdown button
+        const dropdownButton = createDropdownButton(values, i);
+
+        // Append the dropdown button to the header
+        header.appendChild(dropdownButton);
+      }
+    }
+  });
+
+  // Function to create a Bootstrap dropdown button
+  function createDropdownButton(values, columnIndex) {
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "btn-group";
+
+    const button = document.createElement("button");
+    button.textContent = "";
+    button.className = "btn btn-secondary dropdown-toggle";
+    button.setAttribute("data-toggle", "dropdown");
+    button.setAttribute("aria-haspopup", "true");
+    button.setAttribute("aria-expanded", "false");
+
+    buttonGroup.appendChild(button);
+
+    const dropdownMenu = createDropdownMenu(values, columnIndex);
+    buttonGroup.appendChild(dropdownMenu);
+
+    return buttonGroup;
+  }
+
+  // Function to create the Bootstrap dropdown menu
+  function createDropdownMenu(values, columnIndex) {
+    const dropdownMenu = document.createElement("div");
+    dropdownMenu.className = "dropdown-menu";
+
+    const allOption = createDropdownOption("All", columnIndex);
+    dropdownMenu.appendChild(allOption);
+
+    values.forEach(value => {
+      const option = createDropdownOption(value, columnIndex);
+      dropdownMenu.appendChild(option);
+    });
+
+    return dropdownMenu;
+  }
+
+  // Function to create a dropdown option
+  function createDropdownOption(value, columnIndex) {
+    const option = document.createElement("a");
+    option.className = "dropdown-item";
+    option.href = "#";
+    option.textContent = value;
+    option.addEventListener("click", function (event) {
+      event.preventDefault();
+      filterTableRows(columnIndex, value);
+    });
+    return option;
+  }
+
+  // Function to filter table rows based on selected dropdown value
+  function filterTableRows(columnIndex, selectedValue) {
+    const table = document.getElementById("nonVehicleTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+      const cellValue = row.cells[columnIndex].textContent.trim();
+      row.style.display = selectedValue === "All" || selectedValue === cellValue ? "table-row" : "none";
+    });
+  }
+
+  // Function to convert specified columns to Excel and trigger download
+  function exportToExcel() {
+    const table = document.getElementById('nonVehicleTable');
+    
+    // Create a copy of the table without the header row
+    const tableWithoutHeader = table.cloneNode(true);
+    tableWithoutHeader.deleteTHead();
+
+    // Remove the specified columns from the copied table
+    const rows = tableWithoutHeader.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].removeChild(rows[i].children[38]);
+      rows[i].removeChild(rows[i].children[37]);
+      rows[i].removeChild(rows[i].children[36]);
+      rows[i].removeChild(rows[i].children[35]);
+      rows[i].removeChild(rows[i].children[34]);
+      rows[i].removeChild(rows[i].children[33]);
+      rows[i].removeChild(rows[i].children[32]);
+      rows[i].removeChild(rows[i].children[31]);
+      rows[i].removeChild(rows[i].children[30]);
+      rows[i].removeChild(rows[i].children[29]);
+      rows[i].removeChild(rows[i].firstElementChild); // Remove the first column
+    }
+
+    // Create a new header row with the desired columns
+    const newHeaderRow = [
+        'No Penyalur',
+        'ID Konsumen',
+        'Nama',
+        'NIK',
+        'Alamat',
+        'Sektor Konsumen Pengguna',
+        'Nama Kapal',
+        'Jenis Mesin',
+        'Jumlah Mesin',
+        'Jumlah Daya Mesin (PK)',
+        'Jam Penggunaan Mesin per hari',
+        'Klasifikasi/Kapasitas GT',
+        'Lama Operasi (hari per bulan)',
+        'Konsumsi JBT (Bulan)',
+        'Alokasi Volume',
+        'Tanggal Awal Surat Rekomendasi',
+        'Tanggal Akhir Surat Rekomendasi',
+        'Nomor Surat Rekomendasi',
+
+        'Badan Usaha',
+        'Nama Usaha',
+        'Jenis BBM',
+        'Jenis Usaha',
+        'Kode Provinsi',
+        'Kode Kabupaten Kota',
+        'Kode Kecamatan',
+        'Kode Kelurahan Desa',
+        'Penerbit',
+    ];
+
+    // Create a new table body with modified values
+    const newTableBody = document.createElement('tbody');
+    for (let i = 0; i < rows.length; i++) {
+        const newRow = document.createElement('tr');
+        // Iterate over cells in the current row
+        for (let j = 0; j < rows[i].children.length; j++) {
+            // Check if the current cell is the NIK column
+            const cellValue = j === 3 ? "'" + rows[i].children[j].textContent : rows[i].children[j].textContent;
+            const cell = document.createElement('td');
+            cell.textContent = cellValue;
+            newRow.appendChild(cell);
+        }
+        newTableBody.appendChild(newRow);
+    }
+
+    // Create a new table and add header row and body
+    const tableWithModifiedData = document.createElement('table');
+    const headerRow = document.createElement('tr');
+    for (const header of newHeaderRow) {
+        const headerCell = document.createElement('th');
+        headerCell.textContent = header;
+        headerRow.appendChild(headerCell);
+    }
+    tableWithModifiedData.appendChild(headerRow);
+    tableWithModifiedData.appendChild(newTableBody);
+
+    const ws = XLSX.utils.table_to_sheet(tableWithModifiedData);
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'table_data.xlsx');
+  }
+
+  // Add a click event listener to the "Export Excel" button
+  document.getElementById('exportExcelBtn').addEventListener('click', exportToExcel);
+
+</script>
+
+
+{% endblock %}

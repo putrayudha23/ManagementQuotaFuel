@@ -1,0 +1,715 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Input ID Kendaraan</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link active">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <h1 class="m-0">DATA KENDARAAN</h1>
+{% endblock %}
+
+{% block body %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Search -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Search Data</h3>
+  </div>
+  <div class="card-body">
+    <form method="get" action="{% url 'vehicleData:index' %}">
+      <div class="form-row align-items-end">
+        <div class="form-group col-md-2">
+          <label for="searchLogic">Filter Logic:</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="searchLogic" value="AND" id="searchLogicAND" {% if request.GET.searchLogic == 'AND' %}checked{% endif %}>
+            <label class="form-check-label" for="searchLogicAND">AND</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="searchLogic" value="OR" id="searchLogicOR" {% if request.GET.searchLogic == 'OR' %}checked{% endif %}>
+            <label class="form-check-label" for="searchLogicOR">OR</label>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="number_plat_search">Nomor Kendaraan:</label>
+          <input type="text" class="form-control" name="number_plat_search" id="number_plat_search" value="{{ request.GET.number_plat_search }}">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="user_create_search">User Create:</label>
+          <input type="text" class="form-control mr-2" id="user_create_search" name="user_create_search" value="{{ request.GET.user_create_search }}" list="site-options">
+          <datalist id="site-options">
+            {% for user in users_create %}
+              <option value="{{ user.UploadedBy }}">{{ user.UploadedBy }}</option>
+            {% endfor %}
+          </datalist>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchStatusSTNK">Status STNK:</label>
+          <select class="form-control" id="searchStatusSTNK" name="searchStatusSTNK">
+            <option value="">-- Select --</option>
+            <option value="1" {% if request.GET.searchStatusSTNK == '1' %}selected{% endif %}>True (Tersedia)</option>
+            <option value="0" {% if request.GET.searchStatusSTNK == '0' %}selected{% endif %}>False (Tidak Tersedia)</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchWarnaTNKB">Warna TNKB:</label>
+          <select class="form-control" id="searchWarnaTNKB" name="searchWarnaTNKB">
+            <option value="">-- Select --</option>
+            <option value="PUTIH-HITAM" {% if request.GET.searchWarnaTNKB == 'PUTIH-HITAM' %}selected{% endif %}>PUTIH-HITAM</option>
+            <option value="HITAM" {% if request.GET.searchWarnaTNKB == 'HITAM' %}selected{% endif %}>HITAM</option>
+            <option value="KUNING" {% if request.GET.searchWarnaTNKB == 'KUNING' %}selected{% endif %}>KUNING</option>
+            <option value="MERAH" {% if request.GET.searchWarnaTNKB == 'MERAH' %}selected{% endif %}>MERAH</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="searchJumlahRoda">Jumlah Roda:</label>
+          <select class="form-control" id="searchJumlahRoda" name="searchJumlahRoda">
+            <option value="">-- Select --</option>
+            <option value="4" {% if request.GET.searchJumlahRoda == '4' %}selected{% endif %}>4 Roda</option>
+            <option value="6" {% if request.GET.searchJumlahRoda == '6' %}selected{% endif %}>6 Roda</option>
+            <option value=">6" {% if request.GET.searchJumlahRoda == '>6' %}selected{% endif %}> >6 Roda</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+      </div>
+    </form>        
+  </div>
+</div>
+
+
+
+<!-- Tabel -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+
+  .table-responsive {
+    overflow-y: auto;
+    max-height: 700px;
+    /* max-height: 50%; */
+  }
+
+  /* Style for the table header */
+  #vehicleTable thead {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5; /* You can set the desired background color */
+  }
+
+  /* Optional: Add some padding to the top of the table to prevent the header from overlapping content */
+  .card-body.table-responsive {
+    padding-top: 0px; /* Adjust this value as needed */
+  }
+
+  .dropdown-menu {
+    max-height: 200px; /* Define your desired maximum height */
+    overflow-y: auto;
+  }
+</style>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .required-field {
+    color: red;
+    vertical-align: super;
+  }
+  
+</style>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-tools">
+      <!-- Export Excel button with an ID -->
+      <a href="#" class="btn btn-success" id="exportExcelBtn">Export Table to Excel</a>
+      <!-- <a href="{% url 'vehicleData:export_to_excel' %}" class="btn btn-success" id="exportExcelBtn">Download All Data to Excel</a> -->
+      <a href="{% url 'vehicleData:export_to_excel' %}?searchLogic={{ search_logic }}{% if number_plat_search %}&number_plat_search={{ number_plat_search }}{% endif %}{% if user_create_search %}&user_create_search={{ user_create_search }}{% endif %}{% if searchStatusSTNK != None %}&searchStatusSTNK={{ searchStatusSTNK }}{% endif %}{% if searchWarnaTNKB %}&searchWarnaTNKB={{ searchWarnaTNKB }}{% endif %}{% if searchJumlahRoda %}&searchJumlahRoda={{ searchJumlahRoda }}{% endif %}" class="btn btn-success" id="exportExcelBtn">Download All Data to Excel</a>
+    </div>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table filterable-table" id="vehicleTable">
+      <thead>
+        <tr>
+          <th class="text-center" style="display:none;">id</th>
+          <th class="text-center">Nomor Kendaraan </th>
+          <th class="text-center">Nama Pemilik </th>
+          <th class="text-center">Alamat Pemilik </th>
+          <th class="text-center">Merk Kendaraan </th>
+          <th class="text-center">Tipe Kendaraan STNK </th>
+          <th class="text-center">Jenis/Model Kendaraan STNK </th>
+          <th class="text-center">Warna TNKB </th>
+          <th class="text-center">Jumlah Roda </th>
+          <th class="text-center">Tipe Kendaraan System </th>
+          <th class="text-center">Tahun Pembuatan </th>
+          <th class="text-center">Isi Silinder </th>
+          <th class="text-center">STNK Status </th>
+          <th class="text-center">Batas Masa Berlaku STNK </th>
+          <th class="text-center">Rekom Status </th>
+
+          <th class="text-center">STNK Depan </th>
+          <th class="text-center">STNK Belakang </th>
+          <th class="text-center">Surat Rekomendasi </th>
+
+          <th class="text-center">Vehicle Type ID </th>
+          <th class="text-center">Setting System </th>
+          <th class="text-center">Inactive Status </th>
+
+          <th class="text-center">User Create </th>
+          <th class="text-center">Date Create </th>
+          <th class="text-center">User Update </th>
+          <th class="text-center">Date Update </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in page_obj %}
+        <tr>
+            <td class="text-center" style="display:none;">{{ row.RowID }}</td>
+            <td class="text-center">{{ row.number_plat }}</td>
+            <td class="text-center">{{ row.NamaPemilik }}</td>
+            <td class="text-center">{{ row.AlamatPemilik }}</td>
+            <td class="text-center">{{ row.MerkKendaraan }}</td>
+            <td class="text-center">{{ row.TypeKendaraan }}</td>
+            <td class="text-center">{{ row.JenisKendaraan }}</td>
+            <td class="text-center">{{ row.Warna }}</td>
+            <td class="text-center">{{ row.JumlahRoda }}</td>
+            <td class="text-center">{{ row.description }}</td>
+            <td class="text-center">{{ row.TahunPembuatan }}</td>
+            <td class="text-center">{{ row.KapasitasCylinder }}</td>
+            <td class="text-center">{{ row.STNKReady }}</td>
+            <td class="text-center">{{ row.DateValidSTNK }}</td>
+            <td class="text-center">{{ row.RekomReady }}</td>
+
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/stnk_images/{{ row.number_plat }}_STNK_DEPAN">File Link</a></td>
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/stnk_images/{{ row.number_plat }}_STNK_BELAKANG">File Link</a></td>
+            <td class="text-center"><a href="{{ MEDIA_URL }}media/rekom_images/{{ row.number_plat }}_SURAT_REKOMENDASI">File Link</a></td>
+
+            <td class="text-center">{{ row.vehicletype_id }}</td>
+            <td class="text-center">{{ row.SettingSystem }}</td>
+            <td class="text-center">{{ row.Deleted }}</td>
+            <td class="text-center">{{ row.UploadedBy }}</td>
+            <td class="text-center">{{ row.UploadedDate }}</td>
+            <td class="text-center">{{ row.ChangedBy }}</td>
+            <td class="text-center">{{ row.ChangedDate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+      </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+      </li>
+    {% endif %}
+  </ul>  
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+  </div>
+</div>
+
+<!-- SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+<!-- FileSaver -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<!-- <script>
+  // Your JavaScript code here
+  document.addEventListener("DOMContentLoaded", function () {
+    const table = document.getElementById("vehicleTable");
+    const headers = table.getElementsByTagName("th");
+
+    // Create dropdowns and populate them with unique values
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
+      const values = new Set();
+
+      // Collect unique values from the column
+      const columnCells = table.querySelectorAll(`tr td:nth-child(${i + 1})`);
+      columnCells.forEach(cell => {
+        values.add(cell.textContent.trim());
+      });
+
+      // Create and populate the dropdown
+      const dropdown = document.createElement("select");
+      const defaultOption = document.createElement("option");
+      defaultOption.textContent = "All";
+      dropdown.appendChild(defaultOption);
+
+      values.forEach(value => {
+        const option = document.createElement("option");
+        option.textContent = value;
+        dropdown.appendChild(option);
+      });
+
+      // Add event listener to the dropdown
+      dropdown.addEventListener("change", function () {
+        const selectedValue = this.value;
+        const rows = table.querySelectorAll("tbody tr");
+
+        rows.forEach(row => {
+          const cellValue = row.querySelector(`td:nth-child(${i + 1})`).textContent.trim();
+          if (selectedValue === "All" || selectedValue === cellValue) {
+            row.style.display = "table-row";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      });
+
+      // Append the dropdown to the header
+      header.appendChild(dropdown);
+    }
+  });
+</script> -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const table = document.getElementById("vehicleTable");
+    const headers = table.getElementsByTagName("th");
+
+    // Create dropdown buttons and populate them with unique values
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
+      const headerText = header.textContent.trim(); // Get the text content of the header
+
+      // Check if the header is one of the excluded headers
+      if (headerText !== "STNK Depan" && headerText !== "STNK Belakang" && headerText !== "Surat Rekomendasi") {
+        const values = new Set();
+
+        // Collect unique values from the column
+        const columnCells = table.querySelectorAll(`tr td:nth-child(${i + 1})`);
+        columnCells.forEach(cell => {
+          values.add(cell.textContent.trim());
+        });
+
+        // Create a dropdown button
+        const dropdownButton = createDropdownButton(values, i);
+
+        // Append the dropdown button to the header
+        header.appendChild(dropdownButton);
+      }
+    }
+  });
+
+  // Function to create a Bootstrap dropdown button
+  function createDropdownButton(values, columnIndex) {
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "btn-group";
+
+    const button = document.createElement("button");
+    button.textContent = "";
+    button.className = "btn btn-secondary dropdown-toggle";
+    button.setAttribute("data-toggle", "dropdown");
+    button.setAttribute("aria-haspopup", "true");
+    button.setAttribute("aria-expanded", "false");
+
+    buttonGroup.appendChild(button);
+
+    const dropdownMenu = createDropdownMenu(values, columnIndex);
+    buttonGroup.appendChild(dropdownMenu);
+
+    return buttonGroup;
+  }
+
+  // Function to create the Bootstrap dropdown menu
+  function createDropdownMenu(values, columnIndex) {
+    const dropdownMenu = document.createElement("div");
+    dropdownMenu.className = "dropdown-menu";
+
+    const allOption = createDropdownOption("All", columnIndex);
+    dropdownMenu.appendChild(allOption);
+
+    values.forEach(value => {
+      const option = createDropdownOption(value, columnIndex);
+      dropdownMenu.appendChild(option);
+    });
+
+    return dropdownMenu;
+  }
+
+  // Function to create a dropdown option
+  function createDropdownOption(value, columnIndex) {
+    const option = document.createElement("a");
+    option.className = "dropdown-item";
+    option.href = "#";
+    option.textContent = value;
+    option.addEventListener("click", function (event) {
+      event.preventDefault();
+      filterTableRows(columnIndex, value);
+    });
+    return option;
+  }
+
+  // Function to filter table rows based on selected dropdown value
+  function filterTableRows(columnIndex, selectedValue) {
+    const table = document.getElementById("vehicleTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+      const cellValue = row.cells[columnIndex].textContent.trim();
+      row.style.display = selectedValue === "All" || selectedValue === cellValue ? "table-row" : "none";
+    });
+  }
+</script>
+
+
+<script>
+// Function to convert table data to Excel and trigger download
+function exportToExcel() {
+  const table = document.getElementById('vehicleTable');
+
+  // Create a copy of the table without the header row
+  const tableWithoutHeader = table.cloneNode(true);
+  tableWithoutHeader.deleteTHead();
+
+  // Remove the specified columns from the copied table
+  const rows = tableWithoutHeader.getElementsByTagName('tr');
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].removeChild(rows[i].children[17]); // Remove 'STNK Depan'
+    rows[i].removeChild(rows[i].children[16]); // Remove 'STNK Belakang'
+    rows[i].removeChild(rows[i].children[15]); // Remove 'Surat Rekomendasi'
+    rows[i].removeChild(rows[i].firstElementChild); // Remove the first column
+  }
+
+  // Create a new header row data array
+  const newHeaderRow = [
+    'Nomor Kendaraan',
+    'Nama Pemilik',
+    'Alamat Pemilik',
+    'Merk Kendaraan',
+    'Tipe Kendaraan STNK',
+    'Jenis/Model Kendaraan STNK',
+    'Warna TNKB',
+    'Jumlah Roda',
+    'Tipe Kendaraan System',
+    'Tahun Pembuatan',
+    'Isi Silinder',
+    'STNK Status',
+    'Batas Masa Berlaku STNK',
+    'Rekom Status',
+    'Vehicle Type ID',
+    'Setting System',
+    'Inactive Status',
+    'User Create',
+    'Date Create',
+    'User Update',
+    'Date Update'
+  ];
+
+  // Insert the new header row data as the first row in the copied table
+  const newHeaderRowElement = document.createElement('tr');
+  for (const header of newHeaderRow) {
+    const headerCell = document.createElement('th');
+    headerCell.textContent = header;
+    newHeaderRowElement.appendChild(headerCell);
+  }
+  tableWithoutHeader.insertBefore(newHeaderRowElement, tableWithoutHeader.firstChild);
+
+  const ws = XLSX.utils.table_to_sheet(tableWithoutHeader);
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+  saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'table_data.xlsx');
+}
+
+// Add a click event listener to the "Export Excel" button
+document.getElementById('exportExcelBtn').addEventListener('click', exportToExcel);
+</script>
+    
+{% endblock %}

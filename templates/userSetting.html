@@ -1,0 +1,644 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | User Setting</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link active">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <h1 class="m-0">USER SETTING</h1>
+{% endblock %}
+
+{% block body %}
+<!-- Search -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Search User</h3>
+  </div>
+  <div class="card-body">
+    <form class="form-inline" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username_search" class="mr-2">Username: </label>
+        <input type="text" class="form-control mr-2" name="username_search" id="site_registration">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
+
+<!-- Tabel -->
+<style>
+  table th,
+  table td {
+    white-space: nowrap;
+  }
+
+  .table-responsive {
+    overflow-y: auto;
+    max-height: 700px;
+    /* max-height: 50%; */
+  }
+
+  /* Style for the table header */
+  #nonVehicleTable thead {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5; /* You can set the desired background color */
+  }
+
+  /* Optional: Add some padding to the top of the table to prevent the header from overlapping content */
+  .card-body.table-responsive {
+    padding-top: 0px; /* Adjust this value as needed */
+  }
+
+  .dropdown-menu {
+    max-height: 200px; /* Define your desired maximum height */
+    overflow-y: auto;
+  }
+</style>
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination li {
+    list-style: none;
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+  }
+  
+  .pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+  }
+  
+  .pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .pagination-info span {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .required-field {
+    color: red;
+    vertical-align: super;
+  }
+
+  .disabled-link {
+    pointer-events: none; /* Disable pointer events to make the link unclickable */
+    color: #ccc; /* Change the text color to indicate it's disabled */
+    text-decoration: none; /* Remove the default underline */
+    cursor: not-allowed; /* Show a "not-allowed" cursor on hover to indicate it's disabled */
+  }
+
+  .disabled-link:hover {
+    color: #ccc; /* Change the text color on hover to maintain the disabled appearance */
+  }
+
+  .btn-disabled {
+    background-color: gray;
+    color: rgb(106, 106, 106); /* You can change the text color to suit your needs */
+  }
+</style>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Table User List</h3>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-striped" id="userTable">
+      <thead>
+        <tr>
+          <th class="text-center" style="display:none;">id</th>
+          <th class="text-center">Username</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Email</th>
+          <th class="text-center">User Status</th>
+          <th class="text-center">Approver</th>
+          <th class="text-center">Activate Status</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Activate Change</th>
+          <th class="text-center">Site Mapping</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in page_obj %}
+            <tr data-row-id="{{ user.id }}">
+                <td class="text-center" style="display:none;">{{ user.id }}</td>
+                <td class="text-center">{{ user.username }}</td>
+                <td class="text-center">{{ user.first_name }}</td>
+                <td class="text-center">{{ user.email }}</td>
+                <td class="text-center">
+                    {% if user.is_superuser %}
+                        Staff Admin
+                    {% else %}
+                        Staff Cabang
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if user.is_approver %}
+                        YES
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+                <td class="text-center">{{ user.is_active }}</td>
+                <td class="text-center"><a class="btn btn-success" id="editBtn">Edit</a></td>
+                <td class="text-center"><a class="btn btn-danger" href="{% url 'userSetting:delete' user.id %}" id="deleteBtn" type="Submit">Change Activate Status</a></td>
+                <td class="text-center">
+                  <a class="btn btn-primary edit-button" data-row-id="{{ user.id }}" data-bs-toggle="modal" data-bs-target="#editModal">Set Site</a>
+                </td>
+                
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+
+<!-- Form -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Add or Modify</h3>
+  </div>
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="username">Username <span class="required-field"><sup style="font-size: 90%;">*</sup></span></label>
+              <select class="form-control" id="username" name="username" required>
+                  {% for uname in uname_list %}
+                      <option value="{{ uname }}">{{ uname }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label for="email">Email <span class="required-field"><sup style="font-size: 90%;">*</sup></span></label>
+              <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="user_status">User Status <span class="required-field"><sup style="font-size: 90%;">*</sup></span></label>
+              <select class="form-control" id="user_status" name="user_status" required>
+                <option value="True">Staff Admin</option>
+                <option value="False">Staff Cabang</option>
+              </select>
+              <input type="hidden" class="form-control" id="id_modify" name="id_modify">              
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="approver">Approver <span class="required-field"><sup style="font-size: 90%;">*</sup></span></label>
+              <select class="form-control" id="approver" name="approver" required>
+                <option value="True">YES</option>
+                <option value="False">NO</option>
+              </select>             
+            </div>
+          </td>
+        </tr>
+      </table>
+      <button type="Submit" class="btn btn-primary" id="submitBtn">Submit</button>
+      <button type="Submit" class="btn btn-success" id="modifyBtn" disabled>Modify</button>
+      <button type="Button" class="btn btn-danger" id="cancelmodifyBtn" disabled>Cancel Modify</button>
+    </form>
+  </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'dist/css/filter_multi_select.css' %}"/>
+<script src="{% static 'dist/js/filter-multi-select-bundle.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'dist/css/bootstrap.min.css' %}">
+<script src="{% static 'dist/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- edit Pop up -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">User Site Mapping</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addForm" method="post" action="{% url 'userSetting:site_mapping' %}">
+              {% csrf_token %}
+              <input type="hidden" class="form-control" id="rowIdInput" name="rowIdInput" required>
+              <div class="mb-3">
+                <label for="entryUsername" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="entryUsername" name="entryUsername" required>
+              </div>
+
+              {% for username, selected_sites in selected_sites_per_user.items %}
+                  <div class="form-group menuSelect" data-username="{{ username }}" style="display: none;">
+                      <label for="site_list_{{ username }}">Pilih site</label>
+                      <select multiple name="site_list_{{ username }}" id="site_list_{{ username }}" class="filter-multi-select">
+                          {% for site in sites %}
+                              {% with concat_value=site.typeSpb|add:" "|add:site.site_registration %}
+                                  {% if concat_value in selected_sites %}
+                                      <option value="{{ concat_value }}" selected>{{ concat_value }} ({{ site.site_name }})</option>
+                                  {% else %}
+                                      <option value="{{ concat_value }}">{{ concat_value }} ({{ site.site_name }})</option>
+                                  {% endif %}
+                              {% endwith %}
+                          {% endfor %}
+                      </select>
+                  </div>
+              {% endfor %}
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn btn-success" id="saveButton">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  const editBtns = document.querySelectorAll("#editBtn");
+  const username_entry = document.getElementById("username");
+  const email_entry = document.getElementById("email");
+  const user_status_entry = document.getElementById("user_status");
+  const approver_entry = document.getElementById("approver");
+  const id_entry_modify = document.getElementById("id_modify");
+  const submit_btn = document.getElementById("submitBtn");
+  const modify_btn = document.getElementById("modifyBtn");
+  const cancel_modify_btn = document.getElementById("cancelmodifyBtn");
+  let newOption;
+
+  editBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // Remove the "selected" class from all rows
+      editBtns.forEach(function (btn) {
+        btn.closest("tr").classList.remove("selected");
+      });
+      // Add the "selected" class to the parent row of the clicked button
+      this.closest("tr").classList.add("selected");
+
+      // Get the data from the selected row
+      const row = this.closest("tr");
+      const idCell = row.querySelector("td:nth-child(1)");
+      const usernameCell = row.querySelector("td:nth-child(2)");
+      const emailCell = row.querySelector("td:nth-child(4)");
+      const user_statusCell = row.querySelector("td:nth-child(5)");
+      const approverCell = row.querySelector("td:nth-child(6)");
+
+      // Populate the input fields with the data from the selected row
+      newOption = document.createElement("option");
+      newOption.value = usernameCell.innerText;
+      newOption.text = usernameCell.innerText;
+      username_entry.add(newOption);
+      username_entry.value = usernameCell.innerText;
+      email_entry.value = emailCell.innerText;
+      if (user_statusCell.innerText === "Staff Admin") {
+        user_status_entry.value = "True";
+      } else if (user_statusCell.innerText === "Staff Cabang") {
+        user_status_entry.value = "False";
+      } else {
+        // Handle unknown user status value
+      }
+      if (approverCell.innerText === "YES") {
+        approver_entry.value = "True";
+      } else if (approverCell.innerText === "NO") {
+        approver_entry.value = "False";
+      } else {
+        // Handle unknown user status value
+      }
+      id_entry_modify.value = idCell.innerText;
+
+      // Remove the "disabled" attribute from the input elements
+      modify_btn.removeAttribute("disabled");
+      cancel_modify_btn.removeAttribute("disabled");
+      submit_btn.disabled = true;
+      username_entry.disabled = true;
+
+      // Scroll to the bottom of the page
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  });
+
+  cancel_modify_btn.addEventListener("click", function() {
+    const optionToRemove = username_entry.querySelector('option[value="' + newOption.value + '"]');
+    optionToRemove.remove();
+    // Disable the Modify and Cancel Modify buttons, and enable the Submit button
+    modify_btn.disabled = true;
+    cancel_modify_btn.disabled = true;
+    submit_btn.disabled = false;
+    email_entry.disabled = false;
+    username_entry.disabled = false;
+
+    // Clear the input fields
+    username_entry.value = "";
+    email_entry.value = "";
+    user_status_entry.value = "";
+    approver_entry.value = "";
+    id_entry_modify.value = "";
+
+    // Remove the "selected" class from all rows
+    tableRows.forEach(function(row) {
+      row.classList.remove("selected");
+    });
+  });
+
+  // auto fill edit form
+  $(document).ready(function() {
+    $('.edit-button').on('click', function() {
+        var row = $(this).closest('tr');
+        var username = row.find('td:eq(1)').text().trim();
+
+        // Fill in the form fields in the modal with the retrieved data
+        $('#entryUsername').val(username).prop('readonly', true);
+
+        $('.menuSelect').hide(); // Hide all form-groups
+
+        // Show the form-group associated with the current username
+        $('.menuSelect[data-username="' + username + '"]').show();
+    });
+  });
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Knowflow Web | Data BPH</title>
+{% endblock %}
+
+{% block header %}
+  <a href="#" class="navbar-brand">KNOWFLOW WEB</a>
+{% endblock %}
+
+{% block username %}
+<a class="nav-link" data-toggle="dropdown" href="#">
+  <img src="{% static 'dist/img/user.png' %}" width="32" height="32" class="rounded-circle" alt="User Image">
+  <span class="ml-2 d-none d-lg-inline-block">{{user.get_full_name}}</span>
+</a>
+<form id="logout-form" method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <a href="#" class="dropdown-item" onclick="showConfirmation(event)">
+      <div class="media">
+        <img src="{% static 'dist/img/log-out.png' %}" alt="Log Out" width="30" class="mr-3">
+        <div class="media-body">
+          <h6 class="mt-0 mb-1 font-weight-bold">Logout</h6>
+        </div>
+      </div>
+    </a>
+  </div>
+</form>
+
+<script>
+  function showConfirmation(event) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+      // User clicked "OK"
+      document.getElementById('logout-form').submit();
+    } else {
+      // User clicked "Cancel"
+    }
+  }
+</script>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar"
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-header">TRANSPORTASI</li>
+      <!-- Quota Transaction -->
+      <li class="nav-item">
+        <a href="/quotaTransaction" class="nav-link">
+          <i class="nav-icon fas fa-car"></i>
+          <p>
+            Quota Transaction
+          </p>
+        </a>
+      </li>
+      <!-- Kuota Master -->
+      <li class="nav-item">
+        <a href="/kuotaMaster" class="nav-link">
+          <i class="nav-icon fas fa-archive"></i>
+          <p>
+            Kuota Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Master -->
+      <li class="nav-item">
+        <a href="/vehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck"></i>
+          <p>
+            Input ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Import Vehicle Master -->
+      <li class="nav-item">
+        <a href="/importVehicleMaster" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload ID Kendaraan
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Data -->
+      <li class="nav-item">
+        <a href="/vehicleData" class="nav-link">
+          <i class="nav-icon fas fa-car-side"></i>
+          <p>
+            Vehicle Master
+          </p>
+        </a>
+      </li>
+      <!-- Vehicle Type Master -->
+      <li class="nav-item">
+        <a href="/vehicleTypeMaster" class="nav-link">
+          <i class="nav-icon fas fa-truck-pickup"></i>
+          <p>
+            Vehicle Type Master
+          </p>
+        </a>
+      </li>
+      <!-- Site Master -->
+      <li class="nav-item">
+        <a href="/siteMaster" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p>
+            Site Master
+          </p>
+        </a>
+      </li>
+      <!-- Product Master -->
+      <li class="nav-item">
+        <a href="/productMaster" class="nav-link">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>
+            Product Master
+          </p>
+        </a>
+      </li>
+      <!-- unblock -->
+      <li class="nav-item">
+        <a href="/unblock" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data Bloking
+          </p>
+        </a>
+      </li>
+      <li class="nav-header">NON TRANSPORTASI</li>
+      <li class="nav-item">
+        <a href="/uploadExcelNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-excel"></i>
+          <p>
+            Upload Excel Data
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/inputDataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-edit"></i>
+          <p>
+            Input Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/uploadSuratRekomNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+            Upload Surat Rekom
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataDetailNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-file-alt"></i>
+          <p>
+            Data Detail
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/transactionNonkendaraan" class="nav-link">
+          <i class="nav-icon fas fa-exchange-alt"></i>
+          <p>
+            Transaction
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/generateScriptNonKendaraan" class="nav-link">
+          <i class="nav-icon fas fa-code"></i>
+          <p>
+            Script Generator
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataBph" class="nav-link active">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Data BPH
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/dataOffline" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Ubah UUID
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/editExcelData" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Edit Excel Data
+          </p>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="/reportTransactionNonKendaraan" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+                Report Transaction
+            </p>
+        </a>
+      </li> -->
+      <li class="nav-header">USER</li>
+      <!-- User Setting -->
+      <li class="nav-item">
+        <a href="/userSetting" class="nav-link">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            User Setting
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>
+{% endblock %}
+
+{% block header_page %}
+  <div class="header-container">
+    <h3 class="header-title">Data BPH</h3>
+  </div>
+{% endblock %}
+
+{% block body %}
+<!-- style -->
+<style>
+table th,
+table td {
+    white-space: nowrap;
+}
+
+.table-responsive {
+    overflow-y: auto;
+    max-height: 700px;
+    /* max-height: 50%; */
+}
+
+/* Style for the table header */
+#nonVehicleTable thead {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5; /* You can set the desired background color */
+}
+
+/* Optional: Add some padding to the top of the table to prevent the header from overlapping content */
+.card-body.table-responsive {
+    padding-top: 0px; /* Adjust this value as needed */
+}
+
+.dropdown-menu {
+    max-height: 200px; /* Define your desired maximum height */
+    overflow-y: auto;
+}
+</style>
+<style>
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    list-style: none;
+    margin: 0 5px;
+}
+
+.pagination li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination li a:hover {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination li.disabled a {
+    background-color: #f2f2f2;
+    color: #ccc;
+    pointer-events: none;
+}
+
+.pagination li:first-child a:before {
+    content: "\2190";
+    margin-right: 5px;
+}
+
+.pagination li:last-child a:after {
+    content: "\2192";
+    margin-left: 5px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-info {
+    margin-top: 2px;
+    font-size: 14px;
+    color: #777;
+}
+
+.pagination-info span {
+    font-weight: bold;
+    color: #333;
+}
+
+.required-field {
+    color: red;
+    vertical-align: super;
+}
+
+.modal-body {
+    max-height: 700px; /* Set a maximum height for the modal body */
+    overflow-y: auto; /* Add vertical scrollbars when content overflows */
+}
+
+.modal-dialog {
+    max-width: 700px; /* Adjust the width as needed */
+    width: 80%; /* You can also use a percentage of the viewport width */
+}
+</style>
+  
+<!-- table -->
+<div class="card">
+<div class="card-header">
+    <div class="card-tools">
+      <a href="{% url 'dataBph:download_data' %}" id="downloadLink" class="btn btn-success">Download Data to Excel</a>
+    </div>
+</div>
+<div class="card-body table-responsive">
+    <table class="table filterable-table" id="dataBphTable">
+    <thead>
+        <tr>
+        <th class="text-center" style="display:none;">id</th>
+        <th class="text-center" style="display:none;">uuid</th>
+        <th class="text-center" style="display:none;">uuid kapal</th>
+        <th class="text-center">Badan Usaha </th>
+        <th class="text-center">Nomor Surat </th>
+        <th class="text-center">NIK </th>
+        <th class="text-center">Nama </th>
+        <th class="text-center">Nama Usaha </th>
+        <th class="text-center">Jenis BBM </th>
+        <th class="text-center">Sektor Konsumen </th>
+        <th class="text-center">Jenis Usaha </th>
+        <th class="text-center">Nama Kapal </th>
+        <th class="text-center">Alokasi Volume </th>
+        <th class="text-center">No Penyalur </th>
+        <th class="text-center">Tanggal Awal Rekomendasi </th>
+        <th class="text-center">Tanggal Akhir Rekomendasi </th>
+        <th class="text-center">Kode Provinsi </th>
+        <th class="text-center">Kode Kabupaten/Kota </th>
+        <th class="text-center">Kode Kecamatan </th>
+        <th class="text-center">Kode Kelurahan/Desa </th>
+        <th class="text-center">Create Datetine </th>
+        <th class="text-center">Update Datetime </th>
+        <th class="text-center">Status </th>
+        <th class="text-center">Penerbit </th>
+        <th class="text-center">URL Surat</th>
+        <th class="text-center" style="display:none;">data_release</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in page_obj %}
+        <tr data-row-id="{{ row.id }}">
+            <td class="text-center" data-field="id" style="display:none;">{{ row.id }}</td>
+            <td class="text-center" data-field="uuid" style="display:none;">{{ row.uuid }}</td>
+            <td class="text-center" data-field="uuid_kapal" style="display:none;">{{ row.uuid_kapal }}</td>
+            <td class="text-center" data-field="badan_usaha">{{ row.badan_usaha }}</td>
+            <td class="text-center" data-field="no_surat_rekomendasi">{{ row.no_surat_rekomendasi }}</td>
+            <td class="text-center" data-field="nik">{{ row.nik }}</td>
+            <td class="text-center" data-field="nama">{{ row.nama }}</td>
+            <td class="text-center" data-field="nama_usaha">{{ row.nama_usaha }}</td>
+            <td class="text-center" data-field="jenis_bbm">{{ row.jenis_bbm_desc }}</td>
+            <td class="text-center" data-field="sektor_konsumen">{{ row.sektor_konsumen_desc }}</td>
+            <td class="text-center" data-field="jenis_usaha">{{ row.jenis_usaha_desc }}</td>
+            <td class="text-center" data-field="nama_kapal">{{ row.nama_kapal }}</td>
+            <td class="text-center" data-field="alokasi_volume">{{ row.alokasi_volume }}</td>
+            <td class="text-center" data-field="no_penyalur">{{ row.site_registration }}</td>
+            <td class="text-center" data-field="tanggal_terbit">{{ row.tanggal_terbit }}</td>
+            <td class="text-center" data-field="tanggal_berakhir">{{ row.tanggal_berakhir }}</td>
+            <td class="text-center" data-field="kode_provinsi">{{ row.kode_provinsi }}</td>
+            <td class="text-center" data-field="kose_kabkota">{{ row.kode_kabkota }}</td>
+            <td class="text-center" data-field="kode_kecamatan">{{ row.kode_kecamatan }}</td>
+            <td class="text-center" data-field="kode_keldesa">{{ row.kode_keldesa }}</td>
+            <td class="text-center" data-field="created_date">{{ row.created_date }}</td>
+            <td class="text-center" data-field="updated_date">{{ row.updated_date }}</td>
+            <td class="text-center" data-field="status">{{ row.status }}</td>
+            <td class="text-center" data-field="penerbit">{{ row.penerbit }}</td>
+            <td class="text-center" data-field="url_file">{{ row.url_file }}</td>
+            <td class="text-center" data-field="data_release" style="display:none;">{{ row.data_release }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item active">
+    <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item">
+    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+</ul>
+<div class="pagination-container">
+    <div class="pagination-info">
+    Showing <span>{{ page_obj.start_index }}</span> to <span>{{ page_obj.end_index }}</span> of <span>{{ page_obj.paginator.count }}</span> records
+    </div>
+</div>
+</div>
+
+<!-- Your Loading Popup -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden"></span>
+        </div>
+        <p class="mt-2">Loading...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<script>
+  document.getElementById('downloadLink').addEventListener('click', function(event) {
+    event.preventDefault();
+    var url = this.getAttribute('href');
+  
+    // Show the loading modal immediately
+    $('#loadingModal').modal('show');
+  
+    fetch(url)
+      .then(response => {
+        // Hide the loading modal when the download finishes
+        $('#loadingModal').modal('hide');
+        return response.blob();
+      })
+      .then(blob => {
+        // Create a temporary anchor element to initiate the download
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'new_nonVehicleMaster.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      })
+      .catch(error => {
+        console.error('Download error:', error);
+        // Handle download error if needed
+      });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const table = document.getElementById("dataBphTable");
+    const headers = table.getElementsByTagName("th");
+
+    // Create dropdown buttons and populate them with unique values
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i];
+      const headerText = header.textContent.trim(); // Get the text content of the header
+
+      // Check if the header is one of the excluded headers
+      if (headerText !== "" && headerText !== "URL Surat") {
+        const values = new Set();
+
+        // Collect unique values from the column
+        const columnCells = table.querySelectorAll(`tr td:nth-child(${i + 1})`);
+        columnCells.forEach(cell => {
+          values.add(cell.textContent.trim());
+        });
+
+        // Create a dropdown button
+        const dropdownButton = createDropdownButton(values, i);
+
+        // Append the dropdown button to the header
+        header.appendChild(dropdownButton);
+      }
+    }
+  });
+
+  // Function to create a Bootstrap dropdown button
+  function createDropdownButton(values, columnIndex) {
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "btn-group";
+
+    const button = document.createElement("button");
+    button.textContent = "";
+    button.className = "btn btn-secondary dropdown-toggle";
+    button.setAttribute("data-toggle", "dropdown");
+    button.setAttribute("aria-haspopup", "true");
+    button.setAttribute("aria-expanded", "false");
+
+    buttonGroup.appendChild(button);
+
+    const dropdownMenu = createDropdownMenu(values, columnIndex);
+    buttonGroup.appendChild(dropdownMenu);
+
+    return buttonGroup;
+  }
+
+  // Function to create the Bootstrap dropdown menu
+  function createDropdownMenu(values, columnIndex) {
+    const dropdownMenu = document.createElement("div");
+    dropdownMenu.className = "dropdown-menu";
+
+    const allOption = createDropdownOption("All", columnIndex);
+    dropdownMenu.appendChild(allOption);
+
+    values.forEach(value => {
+      const option = createDropdownOption(value, columnIndex);
+      dropdownMenu.appendChild(option);
+    });
+
+    return dropdownMenu;
+  }
+
+  // Function to create a dropdown option
+  function createDropdownOption(value, columnIndex) {
+    const option = document.createElement("a");
+    option.className = "dropdown-item";
+    option.href = "#";
+    option.textContent = value;
+    option.addEventListener("click", function (event) {
+      event.preventDefault();
+      filterTableRows(columnIndex, value);
+    });
+    return option;
+  }
+
+  // Function to filter table rows based on selected dropdown value
+  function filterTableRows(columnIndex, selectedValue) {
+    const table = document.getElementById("dataBphTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+      const cellValue = row.cells[columnIndex].textContent.trim();
+      row.style.display = selectedValue === "All" || selectedValue === cellValue ? "table-row" : "none";
+    });
+  }
+</script>
+
+{% endblock %}
+
